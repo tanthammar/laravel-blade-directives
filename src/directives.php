@@ -20,13 +20,13 @@ return [
             $expression = Parser::multipleArgs($expression);
 
             return implode('', [
-                "<?php if (isset({$expression->get(0)}) && filled({$expression->get(0)}) : ?>",
+                "<?php if (isset({$expression->get(0)}) && filled({$expression->get(0)})) : ?>",
                 "<?php echo {$expression->get(1)}; ?>",
                 '<?php endif; ?>',
             ]);
         }
 
-        return "<?php if (isset({$expression}) && filled({$expression}) : ?>";
+        return "<?php if (isset({$expression}) && filled({$expression})) : ?>";
     },
 
     'endfilled' => function ($expression) {
@@ -39,13 +39,13 @@ return [
             $expression = Parser::multipleArgs($expression);
 
             return implode('', [
-                "<?php if (isset({$expression->get(0)}) && blank({$expression->get(0)}) : ?>",
+                "<?php if (isset({$expression->get(0)}) && blank({$expression->get(0)})) : ?>",
                 "<?php echo {$expression->get(1)}; ?>",
                 '<?php endif; ?>',
             ]);
         }
 
-        return "<?php if (isset({$expression}) && blank({$expression}) : ?>";
+        return "<?php if (isset({$expression}) && blank({$expression})) : ?>";
     },
 
     'endblank' => function ($expression) {
@@ -57,13 +57,13 @@ return [
             $expression = Parser::multipleArgs($expression);
 
             return implode('', [
-                "<?php if (isset({$expression->get(0)}) : ?>",
+                "<?php if (isset({$expression->get(0)})) : ?>",
                 "<?php echo {$expression->get(1)}; ?>",
                 '<?php endif; ?>',
             ]);
         }
 
-        return "<?php if (isset({$expression}) : ?>";
+        return "<?php if (isset({$expression})) : ?>";
     },
 
     'endisset' => function ($expression) {
