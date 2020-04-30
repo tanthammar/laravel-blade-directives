@@ -370,7 +370,7 @@ return [
      |---------------------------------------------------------------------
      */
 
-    'dataAttributes' => function ($expression) {
+    'data' => function ($expression) {
         $output = 'collect((array) '.$expression.')
             ->map(function($value, $key) {
                 return "data-{$key}=\"{$value}\"";
