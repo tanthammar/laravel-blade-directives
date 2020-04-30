@@ -118,7 +118,7 @@ return [
     |
     */
 
-    'isNull' => function ($expression) {
+    'null' => function ($expression) {
         if (Str::contains($expression, ',')) {
             $expression = Parser::multipleArgs($expression);
 
@@ -132,11 +132,11 @@ return [
         return "<?php if (is_null({$expression})) : ?>";
     },
 
-    'endisNull' => function ($expression) {
+    'endnull' => function ($expression) {
         return '<?php endif; ?>';
     },
 
-    'isNotNull' => function ($expression) {
+    'notnull' => function ($expression) {
         if (Str::contains($expression, ',')) {
             $expression = Parser::multipleArgs($expression);
 
@@ -150,7 +150,7 @@ return [
         return "<?php if (! is_null({$expression})) : ?>";
     },
 
-    'endisNotNull' => function ($expression) {
+    'endnotnull' => function ($expression) {
         return '<?php endif; ?>';
     },
 
