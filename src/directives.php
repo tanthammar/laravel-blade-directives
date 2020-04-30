@@ -15,8 +15,63 @@ return [
     | or @istrue($variable, $echoThisVariables)
     |
     */
+    'filled' => function ($expression) {
+        if (Str::contains($expression, ',')) {
+            $expression = Parser::multipleArgs($expression);
 
-    'istrue' => function ($expression) {
+            return implode('', [
+                "<?php if (isset({$expression->get(0)}) && filled({$expression->get(0)}) : ?>",
+                "<?php echo {$expression->get(1)}; ?>",
+                '<?php endif; ?>',
+            ]);
+        }
+
+        return "<?php if (isset({$expression}) && filled({$expression}) : ?>";
+    },
+
+    'endfilled' => function ($expression) {
+        return '<?php endif; ?>';
+    },
+    
+    
+    'blank' => function ($expression) {
+        if (Str::contains($expression, ',')) {
+            $expression = Parser::multipleArgs($expression);
+
+            return implode('', [
+                "<?php if (isset({$expression->get(0)}) && blank({$expression->get(0)}) : ?>",
+                "<?php echo {$expression->get(1)}; ?>",
+                '<?php endif; ?>',
+            ]);
+        }
+
+        return "<?php if (isset({$expression}) && blank({$expression}) : ?>";
+    },
+
+    'endblank' => function ($expression) {
+        return '<?php endif; ?>';
+    },
+    
+    'isset' => function ($expression) {
+        if (Str::contains($expression, ',')) {
+            $expression = Parser::multipleArgs($expression);
+
+            return implode('', [
+                "<?php if (isset({$expression->get(0)}) : ?>",
+                "<?php echo {$expression->get(1)}; ?>",
+                '<?php endif; ?>',
+            ]);
+        }
+
+        return "<?php if (isset({$expression}) : ?>";
+    },
+
+    'endisset' => function ($expression) {
+        return '<?php endif; ?>';
+    },
+    
+
+    'true' => function ($expression) {
         if (Str::contains($expression, ',')) {
             $expression = Parser::multipleArgs($expression);
 
@@ -30,11 +85,11 @@ return [
         return "<?php if (isset({$expression}) && (bool) {$expression} === true) : ?>";
     },
 
-    'endistrue' => function ($expression) {
+    'endtrue' => function ($expression) {
         return '<?php endif; ?>';
     },
 
-    'isfalse' => function ($expression) {
+    'false' => function ($expression) {
         if (Str::contains($expression, ',')) {
             $expression = Parser::multipleArgs($expression);
 
@@ -48,7 +103,7 @@ return [
         return "<?php if (isset({$expression}) && (bool) {$expression} === false) : ?>";
     },
 
-    'endisfalse' => function ($expression) {
+    'endfalse' => function ($expression) {
         return '<?php endif; ?>';
     },
 
@@ -63,7 +118,7 @@ return [
     |
     */
 
-    'isnull' => function ($expression) {
+    'isNull' => function ($expression) {
         if (Str::contains($expression, ',')) {
             $expression = Parser::multipleArgs($expression);
 
@@ -77,11 +132,11 @@ return [
         return "<?php if (is_null({$expression})) : ?>";
     },
 
-    'endisnull' => function ($expression) {
+    'endisNull' => function ($expression) {
         return '<?php endif; ?>';
     },
 
-    'isnotnull' => function ($expression) {
+    'isNotNull' => function ($expression) {
         if (Str::contains($expression, ',')) {
             $expression = Parser::multipleArgs($expression);
 
@@ -95,7 +150,7 @@ return [
         return "<?php if (! is_null({$expression})) : ?>";
     },
 
-    'endisnotnull' => function ($expression) {
+    'endisNotNull' => function ($expression) {
         return '<?php endif; ?>';
     },
 
