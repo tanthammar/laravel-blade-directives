@@ -17,7 +17,16 @@ composer require appstract/laravel-blade-directives
 
 ## Usage
 
-### @istrue
+### @filled
+the variable isset() and filled() https://laravel.com/docs/7.x/helpers#method-filled
+
+### @blank
+the variable isset() but blank() https://laravel.com/docs/7.x/helpers#method-blank
+
+### @isset
+the variable isset() (default php)
+
+### @true
 
 Only show when ```$variable``` isset and true.
 
@@ -33,7 +42,7 @@ Or when you would like to quickly echo
 @istrue($variable, 'This will be echoed')
 ```
 
-### @isfalse
+### @false
 
 Same as ```@istrue``` but checks for isset and false.
 
@@ -43,7 +52,7 @@ Same as ```@istrue``` but checks for isset and false.
 @endisfalse
 ```
 
-### @isnull
+### @null
 
 Only show when ```$variable``` is null.
 
