@@ -18,38 +18,58 @@ composer require appstract/laravel-blade-directives
 ## Usage
 
 ### @filled
+
 the variable isset() and filled() https://laravel.com/docs/7.x/helpers#method-filled
 
+```blade
+@filled($variable)
+   This will be echoed
+@endfilled
+```
+
 ### @blank
+
 the variable isset() but blank() https://laravel.com/docs/7.x/helpers#method-blank
+
+```blade
+@blank($variable)
+   This will be echoed
+@endblank
+```
 
 ### @isset
 the variable isset() (default php)
+
+```blade
+@isset($variable)
+   This will be echoed
+@endisset
+```
 
 ### @true
 
 Only show when ```$variable``` isset and true.
 
 ```blade
-@istrue($variable)
+@true($variable)
    This will be echoed
-@endistrue
+@endtrue
 ```
 
 Or when you would like to quickly echo
 
 ```blade
-@istrue($variable, 'This will be echoed')
+@true($variable, 'This will be echoed')
 ```
 
 ### @false
 
-Same as ```@istrue``` but checks for isset and false.
+Same as ```@true``` but checks for isset and false.
 
 ```blade
-@isfalse($variable)
+@false($variable)
    This will be echoed
-@endisfalse
+@endfalse
 ```
 
 ### @null
@@ -57,19 +77,19 @@ Same as ```@istrue``` but checks for isset and false.
 Only show when ```$variable``` is null.
 
 ```blade
-@isnull($variable)
+@null($variable)
    This will be echoed
-@endisnull
+@endnull
 ```
 
-### @isnotnull
+### @notnull
 
 Same as ```@isnull``` but one shows when ```$variable``` is not null.
 
 ```blade
-@isnotnull($variable)
+@notnull($variable)
    This will be echoed
-@endisnotnull
+@endnotnull
 ```
 
 ### @dump and @dd
